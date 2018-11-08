@@ -1,0 +1,28 @@
+<h5 style="margin-bottom: 40px">Search for a vehicle using VIN or Registration number</h5>
+
+<form>
+    <mz-input-container>
+        <input mz-input
+               [label]="'VIN or Registration'"
+               [ngModel]="number"
+               [validate]="true"
+               id="number"
+               placeholder="ZHWUC1ZD0FLA03115"
+               type="text">
+    </mz-input-container>
+
+    <div>Type of search</div>
+    <mz-switch-container>
+        <input mz-switch
+               [ngModel]="vin"
+               class="red"
+               id="search-type"
+               [off]="'VIN'"
+               [on]="'Registration'"
+               type="checkbox">
+    </mz-switch-container>
+
+    <button mz-button (click)="search()" style="margin-top: 20px">
+        Search
+    </button>
+</form>

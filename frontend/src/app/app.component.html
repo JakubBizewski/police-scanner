@@ -1,0 +1,11 @@
+<mz-navbar navbarClass="teal">
+    <a routerLink="/" class="brand-logo" style="padding-left: 15px">Police Scanner</a>
+    <mz-navbar-item-container [align]="'right'">
+        <mz-navbar-item><a routerLink="vehicle-search">Vehicle Search</a></mz-navbar-item>
+        <mz-navbar-item><a routerLink="citizen-search">Citizen Search</a></mz-navbar-item>
+    </mz-navbar-item-container>
+</mz-navbar>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
