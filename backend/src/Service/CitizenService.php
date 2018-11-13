@@ -4,7 +4,7 @@ namespace PoliceScanner\Service;
 
 use PoliceScanner\Entity\Citizen;
 use PoliceScanner\Model\CitizenModel;
-use PoliceScanner\Model\VehicleBrandModel;
+use PoliceScanner\Model\VehicleBrandSaveModel;
 use PoliceScanner\Repository\CitizenRepository;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 

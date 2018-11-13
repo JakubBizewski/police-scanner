@@ -4,7 +4,7 @@ namespace PoliceScanner\Repository;
 
 use PoliceScanner\Entity\Citizen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use PoliceScanner\Model\VehicleBrandModel;
+use PoliceScanner\Model\VehicleBrandSaveModel;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**

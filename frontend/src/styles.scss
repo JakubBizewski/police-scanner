@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin-ext');
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+body, html {
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    width: 70%;
+
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 970px) {
+    .container {
+        width: 90%;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.col-1 {
+    width: 8.33%;
+    padding: 0 5px;
+}
+
+.col-2 {
+    width: 16.66%;
+    padding: 0 5px;
+}
+
+.col-3 {
+    width: 25%;
+    padding: 0 5px;
+}
+
+.col-4 {
+    width: 33.33%;
+    padding: 0 5px;
+}
+
+.col-5 {
+    width: 41.66%;
+    padding: 0 5px;
+}
+
+.col-6 {
+    width: 50%;
+    padding: 0 5px;
+}

@@ -2,7 +2,7 @@
 
 namespace PoliceScanner\Controller;
 
-use PoliceScanner\Model\VehicleModel;
+use PoliceScanner\Model\VehicleSaveModel;
 use PoliceScanner\Service\VehicleService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -58,7 +58,7 @@ class VehicleController extends BaseController
      */
     public function post(Request $request)
     {
-        $model = VehicleModel::fromRequest($request);
+        $model = VehicleSaveModel::fromRequest($request);
         $response = $this->vehicleService->create($model);
 
         return $this->createResponse($response);
@@ -71,7 +71,7 @@ class VehicleController extends BaseController
      */
     public function put(Request $request)
     {
-        $model = VehicleModel::fromRequest($request);
+        $model = VehicleSaveModel::fromRequest($request);
         $response = $this->vehicleService->update($model);
 
         return $this->createResponse($response);

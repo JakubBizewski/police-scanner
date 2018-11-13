@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { VehicleSearchComponent } from './vehicle-search/vehicle-search.component';
 import { CitizenSearchComponent } from './citizen-search/citizen-search.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MzButtonModule,
-  MzInputModule,
-  MzNavbarModule,
-  MzSwitchModule,
-} from 'ngx-materialize'
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatSlideToggleModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -21,12 +25,16 @@ import {
     CitizenSearchComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
-    MzNavbarModule,
-    MzInputModule,
-    MzSwitchModule,
-    MzButtonModule
+    MatInputModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

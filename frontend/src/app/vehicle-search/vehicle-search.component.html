@@ -1,28 +1,26 @@
-<h5 style="margin-bottom: 40px">Search for a vehicle using VIN or Registration number</h5>
+<h2 style="margin-bottom: 40px">Search for a vehicle using VIN or Registration number</h2>
 
-<form>
-    <mz-input-container>
-        <input mz-input
-               [label]="'VIN or Registration'"
-               [ngModel]="number"
-               [validate]="true"
-               id="number"
-               placeholder="ZHWUC1ZD0FLA03115"
-               type="text">
-    </mz-input-container>
+<div class="d-flex">
+    <form #form="ngForm" class="col-6">
+        <mat-form-field class="full-width">
+            <input [(ngModel)]="number" matInput
+                   placeholder="Registration or VIN number"
+                   required
+                   name="number">
+        </mat-form-field>
 
-    <div>Type of search</div>
-    <mz-switch-container>
-        <input mz-switch
-               [ngModel]="vin"
-               class="red"
-               id="search-type"
-               [off]="'VIN'"
-               [on]="'Registration'"
-               type="checkbox">
-    </mz-switch-container>
+        <mat-slide-toggle [checked]="vin" class="full-width">Search VIN</mat-slide-toggle>
 
-    <button mz-button (click)="search()" style="margin-top: 20px">
-        Search
-    </button>
-</form>
+        <button mat-flat-button color="primary" (click)="search()" [disabled]="form.invalid">Search</button>
+    </form>
+    <div class="col-6">
+        <mat-spinner *ngIf="searching"></mat-spinner>
+        <mat-card class="full-width" *ngIf="vehicle">
+            <mat-card-header> {{ vehicle.model.brand.name }} {{ vehicle.model.name }} <span style="margin-left: auto">{{ vehicle.vin }}</span> </mat-card-header>
+            <mat-card-content class="mat-body">Blalblavlblalba</mat-card-content>
+            <mat-card-actions>
+                <button mat-button>Registration</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

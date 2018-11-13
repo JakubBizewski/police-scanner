@@ -4,6 +4,7 @@ namespace PoliceScanner\Service;
 
 use PoliceScanner\Entity\VehicleModel;
 use PoliceScanner\Model\VehicleModelModel;
+use PoliceScanner\Model\VehicleModelSaveModel;
 use PoliceScanner\Repository\VehicleBrandRepository;
 use PoliceScanner\Repository\VehicleModelRepository;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -56,7 +57,7 @@ class VehicleModelService
         }
     }
 
-    public function create(VehicleModelModel $model): ServiceResponse
+    public function create(VehicleModelSaveModel $model): ServiceResponse
     {
         try {
             $errors = $this->validator->validate($model);
@@ -82,7 +83,7 @@ class VehicleModelService
         }
     }
 
-    public function update(VehicleModelModel $model): ServiceResponse
+    public function update(VehicleModelSaveModel $model): ServiceResponse
     {
         try {
             if (is_null($model->id))

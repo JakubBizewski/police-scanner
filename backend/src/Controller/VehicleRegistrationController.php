@@ -2,8 +2,8 @@
 
 namespace PoliceScanner\Controller;
 
-use PoliceScanner\Model\VehicleModelModel;
-use PoliceScanner\Model\VehicleRegistrationModel;
+use PoliceScanner\Model\VehicleModelSaveModel;
+use PoliceScanner\Model\VehicleRegistrationSaveModel;
 use PoliceScanner\Service\VehicleModelService;
 use PoliceScanner\Service\VehicleRegistrationService;
 use Symfony\Component\HttpFoundation\Request;
@@ -60,7 +60,7 @@ class VehicleRegistrationController extends BaseController
      */
     public function post(Request $request)
     {
-        $model = VehicleRegistrationModel::fromRequest($request);
+        $model = VehicleRegistrationSaveModel::fromRequest($request);
         $response = $this->registrationService->create($model);
 
         return $this->createResponse($response);
@@ -73,7 +73,7 @@ class VehicleRegistrationController extends BaseController
      */
     public function put(Request $request)
     {
-        $model = VehicleRegistrationModel::fromRequest($request);
+        $model = VehicleRegistrationSaveModel::fromRequest($request);
         $response = $this->registrationService->update($model);
 
         return $this->createResponse($response);

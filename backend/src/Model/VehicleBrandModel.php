@@ -2,8 +2,6 @@
 
 namespace PoliceScanner\Model;
 
-use PoliceScanner\Entity\Citizen;
-use PoliceScanner\Entity\Vehicle;
 use PoliceScanner\Entity\VehicleBrand;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;

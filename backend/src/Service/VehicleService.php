@@ -4,6 +4,7 @@ namespace PoliceScanner\Service;
 
 use PoliceScanner\Entity\Vehicle;
 use PoliceScanner\Model\VehicleModel;
+use PoliceScanner\Model\VehicleSaveModel;
 use PoliceScanner\Repository\CitizenRepository;
 use PoliceScanner\Repository\VehicleModelRepository;
 use PoliceScanner\Repository\VehicleRepository;
@@ -76,7 +77,7 @@ class VehicleService
         }
     }
 
-    public function create(VehicleModel $model): ServiceResponse
+    public function create(VehicleSaveModel $model): ServiceResponse
     {
         try {
             $errors = $this->validator->validate($model);
@@ -101,7 +102,7 @@ class VehicleService
         }
     }
 
-    public function update(VehicleModel $model): ServiceResponse
+    public function update(VehicleSaveModel $model): ServiceResponse
     {
         try {
             if (is_null($model->id))
