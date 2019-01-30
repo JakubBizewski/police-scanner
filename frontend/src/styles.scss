@@ -6,20 +6,22 @@
 }
 
 body, html {
+    height: 100%;
+
     padding: 0;
     margin: 0;
 
-    background-color: #1B1B1E;
+    background-image: linear-gradient(to right bottom, #faa916, #e4684e, #a14662, #513550, #1b1b1e);
 }
 
 .container {
     max-width: 920px;
 
-    margin: 20px auto 20px auto;
+    margin: 40px auto 20px auto;
     padding: 20px;
 
     background-color: #fbfffe;
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 mat-card {
