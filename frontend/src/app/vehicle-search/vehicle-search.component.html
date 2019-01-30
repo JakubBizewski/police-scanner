@@ -1,25 +1,62 @@
-<h2 style="margin-bottom: 40px">Search for a vehicle using VIN or Registration number</h2>
+<h2>Search for a vehicle using VIN or Registration number</h2>
 
 <div class="d-flex">
-    <form #form="ngForm" class="col-6">
-        <mat-form-field class="full-width">
-            <input [(ngModel)]="number" matInput
-                   placeholder="Registration or VIN number"
-                   required
-                   name="number">
-        </mat-form-field>
+    <div [ngSwitch]="leftPanel" class="col-6">
+        <app-registration-card *ngSwitchCase="'registration'"
+            [registration]="data"
+            (goBack)="leftPanel = 'search'">
+        </app-registration-card>
 
-        <mat-slide-toggle [checked]="vin" class="full-width">Search VIN</mat-slide-toggle>
+        <app-insurance-card *ngSwitchCase="'insurance'"
+            [insurance]="insurance"
+            (goBack)="leftPanel = 'search'">
+        </app-insurance-card>
 
-        <button mat-flat-button color="primary" (click)="search()" [disabled]="form.invalid">Search</button>
-    </form>
+        <form #form="ngForm" *ngSwitchCase="'search'">
+            <mat-form-field class="full-width">
+                <input [(ngModel)]="number" matInput
+                       placeholder="Registration or VIN number"
+                       required
+                       name="number">
+            </mat-form-field>
+
+            <mat-slide-toggle (change)="vin = $event.checked" class="full-width">Search VIN</mat-slide-toggle>
+
+            <button mat-flat-button
+                    color="primary"
+                    (click)="search()"
+                    [disabled]="form.invalid">Search</button>
+        </form>
+
+        <mat-spinner *ngSwitchDefault></mat-spinner>
+    </div>
     <div class="col-6">
         <mat-spinner *ngIf="searching"></mat-spinner>
-        <mat-card class="full-width" *ngIf="vehicle">
-            <mat-card-header> {{ vehicle.model.brand.name }} {{ vehicle.model.name }} <span style="margin-left: auto">{{ vehicle.vin }}</span> </mat-card-header>
-            <mat-card-content class="mat-body">Blalblavlblalba</mat-card-content>
+
+        <mat-card class="full-width" *ngIf="data">
+            <mat-card-header>
+                {{ data.vehicle.model.brand.name }} {{ data.vehicle.model.name }}
+                <span class="vin-number">{{ data.vehicle.vin }}</span>
+            </mat-card-header>
+            <img matCardImage src="assets/ibiza.jpg">
+            <mat-card-content>
+                Vehicle specifications:
+
+                <div class="vehicle-data"><mat-icon>colorize</mat-icon><span> Color: {{ data.vehicle.colour }}</span></div>
+                <div class="vehicle-data"><mat-icon>brightness_high</mat-icon><span> Power : {{ data.vehicle.model.power }} kW</span></div>
+                <div class="vehicle-data"><mat-icon>brightness_high</mat-icon><span> Torque : {{ data.vehicle.model.torque }} Nm</span></div>
+                <div class="vehicle-data"><mat-icon>arrow_downward</mat-icon><span> Mass : {{ data.vehicle.model.mass }} kg</span></div>
+                <div class="vehicle-data"><mat-icon>calendar_today</mat-icon><span> Production : {{ data.vehicle.productionYear | date:'yyyy' }}</span></div>
+            </mat-card-content>
             <mat-card-actions>
-                <button mat-button>Registration</button>
+                <button mat-button (click)="showRegistration()">Registration</button>
+                <button mat-button (click)="showInsurance()">Insurance</button>
+                <button mat-button style="margin-left: auto" [matMenuTriggerFor]="actionMenu">Actions</button>
+
+                <mat-menu #actionMenu>
+                    <button mat-menu-item>Edit</button>
+                    <button mat-menu-item>Delete</button>
+                </mat-menu>
             </mat-card-actions>
         </mat-card>
     </div>

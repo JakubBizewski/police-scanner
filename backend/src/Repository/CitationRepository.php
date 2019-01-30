@@ -4,6 +4,7 @@ namespace PoliceScanner\Repository;
 
 use PoliceScanner\Entity\Citation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use PoliceScanner\Entity\Citizen;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -17,6 +18,41 @@ class CitationRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Citation::class);
+    }
+
+    /**
+     * @param Citation $citation
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Citation $citation)
+    {
+        $this->getEntityManager()->persist($citation);
+        $this->getEntityManager()->flush($citation);
+    }
+
+    /**
+     * @param Citation $citation
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Citation $citation)
+    {
+        $this->getEntityManager()->remove($citation);
+        $this->getEntityManager()->flush($citation);
+    }
+
+    /**
+     * @param Citizen $citizen
+     * @return Citation[]
+     */
+    public function findByCitizen(Citizen $citizen)
+    {
+        return $this->createQueryBuilder('citation')
+            ->where('citation.citizen = :citizen')
+            ->setParameter('citizen', $citizen)
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

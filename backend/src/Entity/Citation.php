@@ -27,6 +27,11 @@ class Citation
      */
     private $offense;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $issueTime;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Citation
     public function setOffense(?Offense $offense): self
     {
         $this->offense = $offense;
+
+        return $this;
+    }
+
+    public function getIssueTime(): ?\DateTimeInterface
+    {
+        return $this->issueTime;
+    }
+
+    public function setIssueTime(\DateTimeInterface $issueTime): self
+    {
+        $this->issueTime = $issueTime;
 
         return $this;
     }

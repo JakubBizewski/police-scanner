@@ -2,60 +2,44 @@
 
 namespace PoliceScanner\Service;
 
-use PoliceScanner\Entity\VehicleRegistration;
-use PoliceScanner\Model\VehicleRegistrationModel;
-use PoliceScanner\Model\VehicleRegistrationSaveModel;
+use PoliceScanner\Entity\VehicleInsurance;
+use PoliceScanner\Model\VehicleInsuranceModel;
+use PoliceScanner\Model\VehicleInsuranceSaveModel;
 use PoliceScanner\Repository\CitizenRepository;
-use PoliceScanner\Repository\VehicleRegistrationRepository;
+use PoliceScanner\Repository\VehicleInsuranceRepository;
 use PoliceScanner\Repository\VehicleRepository;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class VehicleRegistrationService
+class VehicleInsuranceService
 {
     private $vehicleRepository;
     private $citizenRepository;
-    private $registrationRepository;
+    private $insuranceRepository;
     private $validator;
 
     public function __construct(
         VehicleRepository $vehicleRepository,
         CitizenRepository $citizenRepository,
-        VehicleRegistrationRepository $registrationRepository,
+        VehicleInsuranceRepository $insuranceRepository,
         ValidatorInterface $validator)
     {
         $this->vehicleRepository = $vehicleRepository;
         $this->citizenRepository = $citizenRepository;
-        $this->registrationRepository = $registrationRepository;
+        $this->insuranceRepository = $insuranceRepository;
         $this->validator = $validator;
     }
 
     public function get(int $id): ServiceResponse
     {
         try {
-            $model = $this->registrationRepository->find($id);
-            if ($model) {
-                $model = VehicleRegistrationModel::fromEntity($model);
+            $insurance = $this->insuranceRepository->find($id);
+            if ($insurance) {
+                $insurance = VehicleInsuranceModel::fromEntity($insurance);
 
-                return new ServiceResponse(200, "", $model);
+                return new ServiceResponse(200, "", $insurance);
             }
 
-            return new ServiceResponse(404, "Registration $id not found");
-        } catch (\Exception $exception) {
-            return new ServiceResponse(500, $exception->getMessage());
-        }
-    }
-
-    public function getByRegistration(string $number): ServiceResponse
-    {
-        try {
-            $registration = $this->registrationRepository->findByRegistration($number);
-            if ($registration) {
-                $model = VehicleRegistrationModel::fromEntity($registration);
-
-                return new ServiceResponse(200, "", $model);
-            }
-
-            return new ServiceResponse(404, "Registration $number not found");
+            return new ServiceResponse(404, "Insurance $id not found");
         } catch (\Exception $exception) {
             return new ServiceResponse(500, $exception->getMessage());
         }
@@ -68,14 +52,14 @@ class VehicleRegistrationService
             if (!$vehicle)
                 return new ServiceResponse(404, "Vehicle $id not found");
 
-            $registration = $this->registrationRepository->findByVehicle($vehicle);
-            if ($registration) {
-                $model = VehicleRegistrationModel::fromEntity($registration);
+            $insurance = $this->insuranceRepository->findByVehicle($vehicle);
+            if ($insurance) {
+                $model = VehicleInsuranceModel::fromEntity($insurance);
 
                 return new ServiceResponse(200, "", $model);
             }
 
-            return new ServiceResponse(404, "Registration for vehicle $id not found");
+            return new ServiceResponse(404, "Insurance for vehicle $id not found");
         } catch (\Exception $exception) {
             return new ServiceResponse(500, $exception->getMessage());
         }
@@ -84,10 +68,10 @@ class VehicleRegistrationService
     public function getAll(): ServiceResponse
     {
         try {
-            $models = $this->registrationRepository->findAll();
+            $models = $this->insuranceRepository->findAll();
 
-            $models = array_map(function (VehicleRegistration $registration) {
-                return VehicleRegistrationModel::fromEntity($registration);
+            $models = array_map(function (VehicleInsurance $insurance) {
+                return VehicleInsuranceModel::fromEntity($insurance);
             }, $models);
 
             return new ServiceResponse(200, "", $models);
@@ -97,7 +81,7 @@ class VehicleRegistrationService
         }
     }
 
-    public function create(VehicleRegistrationSaveModel $model): ServiceResponse
+    public function create(VehicleInsuranceSaveModel $model): ServiceResponse
     {
         try {
             $errors = $this->validator->validate($model);
@@ -112,14 +96,13 @@ class VehicleRegistrationService
             if (!$citizen)
                 return new ServiceResponse(404, "Citizen $model->ownerId not found");
 
-            $registration = new VehicleRegistration();
-            $registration->setNumber($model->number);
-            $registration->setOwner($citizen);
-            $registration->setVehicle($vehicle);
-            $registration->setCreateTime(new \DateTime($model->createTime));
-            $registration->setExpireTime(new \DateTime($model->expireTime));
+            $insurance = new VehicleInsurance();
+            $insurance->setOwner($citizen);
+            $insurance->setVehicle($vehicle);
+            $insurance->setCreateTime(new \DateTime($model->createTime));
+            $insurance->setExpireTime(new \DateTime($model->expireTime));
 
-            $this->registrationRepository->save($registration);
+            $this->insuranceRepository->save($insurance);
 
             return new ServiceResponse(201);
         } catch (\Exception $exception) {
@@ -127,18 +110,18 @@ class VehicleRegistrationService
         }
     }
 
-    public function update(VehicleRegistrationSaveModel $model): ServiceResponse
+    public function update(VehicleInsuranceSaveModel $model): ServiceResponse
     {
         try {
             if (is_null($model->id))
-                return new ServiceResponse(400, "ID of Registration not set");
+                return new ServiceResponse(400, "ID of Insurance not set");
 
             $errors = $this->validator->validate($model);
             if (count($errors) > 0)
                 return new ServiceResponse(400, $errors[0]);
 
-            $registration = $this->registrationRepository->find($model->id);
-            if ($registration) {
+            $insurance = $this->insuranceRepository->find($model->id);
+            if ($insurance) {
                 $vehicle = $this->vehicleRepository->find($model->vehicleId);
                 if (!$vehicle)
                     return new ServiceResponse(404, "Vehicle $model->vehicleId not found");
@@ -147,13 +130,12 @@ class VehicleRegistrationService
                 if (!$citizen)
                     return new ServiceResponse(404, "Citizen $model->ownerId not found");
 
-                $registration->setNumber($model->number);
-                $registration->setOwner($citizen);
-                $registration->setVehicle($vehicle);
-                $registration->setCreateTime(new \DateTime($model->createTime));
-                $registration->setExpireTime(new \DateTime($model->expireTime));
+                $insurance->setOwner($citizen);
+                $insurance->setVehicle($vehicle);
+                $insurance->setCreateTime(new \DateTime($model->createTime));
+                $insurance->setExpireTime(new \DateTime($model->expireTime));
 
-                $this->registrationRepository->save($registration);
+                $this->insuranceRepository->save($insurance);
 
                 return new ServiceResponse(204);
             }
@@ -167,14 +149,14 @@ class VehicleRegistrationService
     public function delete(int $id): ServiceResponse
     {
         try {
-            $registration = $this->registrationRepository->find($id);
-            if ($registration) {
-                $this->registrationRepository->delete($registration);
+            $insurance = $this->insuranceRepository->find($id);
+            if ($insurance) {
+                $this->insuranceRepository->delete($insurance);
 
                 return new ServiceResponse(204);
             }
 
-            return new ServiceResponse(404, "Registration $id not found");
+            return new ServiceResponse(404, "Insurance $id not found");
         } catch (\Exception $exception) {
             return new ServiceResponse(500, $exception->getMessage());
         }

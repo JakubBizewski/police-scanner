@@ -4,7 +4,6 @@ namespace PoliceScanner\Service;
 
 use PoliceScanner\Entity\Citizen;
 use PoliceScanner\Model\CitizenModel;
-use PoliceScanner\Model\VehicleBrandSaveModel;
 use PoliceScanner\Repository\CitizenRepository;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -30,6 +29,27 @@ class CitizenService
             }
 
             return new ServiceResponse(404, "Citizen $id not found");
+        } catch (\Exception $exception) {
+            return new ServiceResponse(500, $exception->getMessage());
+        }
+    }
+
+    public function getByFullName(string $fullName): ServiceResponse
+    {
+        try {
+            $name = explode(' ', $fullName);
+
+            if (count($name) != 2)
+                return new ServiceResponse(400, 'Invalid full name');
+
+            $citizen = $this->citizenRepository->findByFullName($name[0], $name[1]);
+            if ($citizen) {
+                $model = CitizenModel::fromEntity($citizen);
+
+                return new ServiceResponse(200, '', $model);
+            }
+
+            return new ServiceResponse(404, "Citizen $fullName not found!");
         } catch (\Exception $exception) {
             return new ServiceResponse(500, $exception->getMessage());
         }

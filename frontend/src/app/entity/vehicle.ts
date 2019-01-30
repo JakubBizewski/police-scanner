@@ -17,6 +17,14 @@ export class VehicleRegistration {
   expireTime: Date;
 }
 
+export class VehicleInsurance {
+  id: number;
+  vehicle: Vehicle;
+  owner: Citizen;
+  createTime: Date;
+  expireTime: Date;
+}
+
 export class VehicleBrand {
   id: number;
   name: string;

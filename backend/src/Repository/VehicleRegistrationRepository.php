@@ -2,6 +2,7 @@
 
 namespace PoliceScanner\Repository;
 
+use PoliceScanner\Entity\Vehicle;
 use PoliceScanner\Entity\VehicleRegistration;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -53,6 +54,21 @@ class VehicleRegistrationRepository extends ServiceEntityRepository
             ->setParameter('number', $registration)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @param Vehicle $vehicle
+     * @return null|VehicleRegistration
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findByVehicle(Vehicle $vehicle): ?VehicleRegistration
+    {
+        return $this->createQueryBuilder('reg')
+            ->where('reg.vehicle = :vehicle')
+            ->setParameter('vehicle', $vehicle)
+            ->getQuery()
+            ->getSingleResult();
     }
 
 //    /**

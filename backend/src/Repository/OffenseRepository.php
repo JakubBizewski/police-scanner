@@ -19,6 +19,28 @@ class OffenseRepository extends ServiceEntityRepository
         parent::__construct($registry, Offense::class);
     }
 
+    /**
+     * @param Offense $offense
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function save(Offense $offense)
+    {
+        $this->getEntityManager()->persist($offense);
+        $this->getEntityManager()->flush($offense);
+    }
+
+    /**
+     * @param Offense $offense
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function delete(Offense $offense)
+    {
+        $this->getEntityManager()->remove($offense);
+        $this->getEntityManager()->flush($offense);
+    }
+
 //    /**
 //     * @return Offense[] Returns an array of Offense objects
 //     */

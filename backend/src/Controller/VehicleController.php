@@ -3,6 +3,8 @@
 namespace PoliceScanner\Controller;
 
 use PoliceScanner\Model\VehicleSaveModel;
+use PoliceScanner\Service\VehicleInsuranceService;
+use PoliceScanner\Service\VehicleRegistrationService;
 use PoliceScanner\Service\VehicleService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,10 +12,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class VehicleController extends BaseController
 {
     private $vehicleService;
+    private $registrationService;
+    private $insuranceService;
 
-    public function __construct(VehicleService $vehicleService)
+    public function __construct(
+        VehicleService $vehicleService,
+        VehicleRegistrationService $registrationService,
+        VehicleInsuranceService $insuranceService)
     {
         $this->vehicleService = $vehicleService;
+        $this->registrationService = $registrationService;
+        $this->insuranceService = $insuranceService;
     }
 
     /**
@@ -47,6 +56,30 @@ class VehicleController extends BaseController
     public function getAll()
     {
         $response = $this->vehicleService->getAll();
+
+        return $this->createResponse($response);
+    }
+
+    /**
+     * @param int $id
+     * @return object|\Symfony\Component\HttpFoundation\JsonResponse
+     * @Route("/vehicle/{id}/registration", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function getRegistration($id)
+    {
+        $response = $this->registrationService->getByVehicleId($id);
+
+        return $this->createResponse($response);
+    }
+
+    /**
+     * @param int $id
+     * @return object|\Symfony\Component\HttpFoundation\JsonResponse
+     * @Route("/vehicle/{id}/insurance", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function getInsurance($id)
+    {
+        $response = $this->insuranceService->getByVehicleId($id);
 
         return $this->createResponse($response);
     }

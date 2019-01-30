@@ -4,7 +4,6 @@ namespace PoliceScanner\Repository;
 
 use PoliceScanner\Entity\Citizen;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use PoliceScanner\Model\VehicleBrandSaveModel;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -40,6 +39,23 @@ class CitizenRepository extends ServiceEntityRepository
     {
         $this->getEntityManager()->remove($citizen);
         $this->getEntityManager()->flush($citizen);
+    }
+
+    /**
+     * @param string $firstName
+     * @param string $lastName
+     * @return null|Citizen
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findByFullName(string $firstName, string $lastName): ?Citizen
+    {
+        return $this->createQueryBuilder('citizen')
+            ->where('citizen.firstName = :firstName')
+            ->andWhere('citizen.lastName = :lastName')
+            ->setParameter('firstName', $firstName)
+            ->setParameter('lastName', $lastName)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**
