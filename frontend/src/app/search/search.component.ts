@@ -7,14 +7,15 @@ import {
 } from '../entity/vehicle';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { ErrorMessageService } from '../error-message/error-message.service';
 
 @Component({
-  selector: 'app-vehicle-search',
-  templateUrl: './vehicle-search.component.html',
-  styleUrls: ['./vehicle-search.component.scss']
+  selector: 'app-search',
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-export class VehicleSearchComponent implements OnInit {
-  constructor(private vehicleService: VehicleService, private snackBar: MatSnackBar) { }
+export class SearchComponent implements OnInit {
+  constructor(private vehicleService: VehicleService, private snackBar: MatSnackBar, private errors: ErrorMessageService) { }
 
   number = '';
   vin = false;

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CitizenSearchComponent } from './citizen-search.component';
+import { ErrorMessageComponent } from './error-message.component';
 
-describe('CitizenSearchComponent', () => {
-  let component: CitizenSearchComponent;
-  let fixture: ComponentFixture<CitizenSearchComponent>;
+describe('ErrorMessageComponent', () => {
+  let component: ErrorMessageComponent;
+  let fixture: ComponentFixture<ErrorMessageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CitizenSearchComponent ]
+      declarations: [ ErrorMessageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CitizenSearchComponent);
+    fixture = TestBed.createComponent(ErrorMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

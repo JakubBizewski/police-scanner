@@ -1,0 +1,39 @@
+<h2>Search the police database</h2>
+<div class="content">
+    <div class="panel">
+        <h3>Vehicle</h3>
+        <form>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="vin / registration number">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-select placeholder="search type">
+                    <mat-option [value]="'vin'">VIN</mat-option>
+                    <mat-option [value]="'registration'">Registration number</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="panel">
+        <h3>Citizen</h3>
+        <form>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="first name">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="last name">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <input matInput placeholder="date of birth" [matDatepicker]="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                <mat-datepicker #dateOfBirth></mat-datepicker>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="search-button">
+        <button mat-raised-button>Search</button>
+    </div>
+    <div class="search-button">
+        <button mat-raised-button>Search</button>
+    </div>
+</div>

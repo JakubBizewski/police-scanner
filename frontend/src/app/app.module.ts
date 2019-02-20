@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
-import { VehicleSearchComponent } from './vehicle-search/vehicle-search.component';
-import { CitizenSearchComponent } from './citizen-search/citizen-search.component';
+import { SearchComponent } from './search/search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,20 +17,19 @@ import {
   MatSnackBarModule,
   MatIconModule,
   MatMenuModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatSelectModule,
 } from '@angular/material';
-import { RegistrationCardComponent } from './vehicle-search/registration-card/registration-card.component';
-import { InsuranceCardComponent } from './vehicle-search/insurance-card/insurance-card.component';
-import { CitizenOverviewComponent } from './citizen-overview/citizen-overview.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
-    VehicleSearchComponent,
-    CitizenSearchComponent,
-    RegistrationCardComponent,
-    InsuranceCardComponent,
-    CitizenOverviewComponent
+    SearchComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     FormsModule,
@@ -40,7 +38,11 @@ import { CitizenOverviewComponent } from './citizen-overview/citizen-overview.co
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    MatMomentDateModule,
     MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatSelectModule,
     MatSlideToggleModule,
     MatButtonModule,
     MatProgressSpinnerModule,

@@ -1,13 +1,17 @@
 <nav>
-    <a routerLink="/" class="logo">Police Scanner</a>
-    <a routerLink="vehicle-search">Vehicle Search</a>
-    <a routerLink="citizen-search">Citizen Search</a>
+    <div>
+        <a routerLink="/" class="logo"><p>Police Scanner</p></a>
+        <a routerLink="search"><p>Admin</p></a>
+        <a routerLink="search"><p>Search</p></a>
+    </div>
 </nav>
 
 <div class="container">
     <router-outlet></router-outlet>
 </div>
 
+<app-error-message></app-error-message>
+
 <footer>
-    <a href="mailto:jakubbizewski@gmail.com">Jakub Bizewski &copy; 2019</a>
+    <a href="mailto:jakubbizewski@gmail.com">Jakub Bizewski &copy; {{ year }}</a>
 </footer>
