@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ErrorMessageComponent } from './error-message.component';
+import { BottomPanelComponent } from './bottom-panel.component';
 
-describe('ErrorMessageComponent', () => {
-  let component: ErrorMessageComponent;
-  let fixture: ComponentFixture<ErrorMessageComponent>;
+describe('BottomPanelComponent', () => {
+  let component: BottomPanelComponent;
+  let fixture: ComponentFixture<BottomPanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorMessageComponent ]
+      declarations: [ BottomPanelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ErrorMessageComponent);
+    fixture = TestBed.createComponent(BottomPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -44,16 +44,19 @@ class CitizenRepository extends ServiceEntityRepository
     /**
      * @param string $firstName
      * @param string $lastName
+     * @param \DateTime $birthday
      * @return null|Citizen
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findByFullName(string $firstName, string $lastName): ?Citizen
+    public function findByFullNameAndBirthday(string $firstName, string $lastName, \DateTime $birthday): ?Citizen
     {
         return $this->createQueryBuilder('citizen')
             ->where('citizen.firstName = :firstName')
             ->andWhere('citizen.lastName = :lastName')
+            ->andWhere('citizen.dateOfBirth = :birthday')
             ->setParameter('firstName', $firstName)
             ->setParameter('lastName', $lastName)
+            ->setParameter('birthday', $birthday)
             ->getQuery()
             ->getOneOrNullResult();
     }

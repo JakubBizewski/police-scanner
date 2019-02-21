@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingComponent } from './landing/landing.component';
 import { SearchComponent } from './search/search.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -21,7 +21,7 @@ import {
   MatDatepickerModule,
   MatSelectModule,
 } from '@angular/material';
-import { ErrorMessageComponent } from './error-message/error-message.component';
+import { BottomPanelComponent } from './bottom-panel/bottom-panel.component';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
@@ -29,10 +29,9 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     AppComponent,
     LandingComponent,
     SearchComponent,
-    ErrorMessageComponent,
+    BottomPanelComponent,
   ],
   imports: [
-    FormsModule,
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,

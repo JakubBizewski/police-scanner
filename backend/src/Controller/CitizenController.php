@@ -24,7 +24,7 @@ class CitizenController extends BaseController
      * @return object|\Symfony\Component\HttpFoundation\JsonResponse
      * @Route("/citizen/{id}", methods={"GET"}, requirements={"id"="\d+"})
      */
-    public function get($id)
+    public function getById($id)
     {
         $response = $this->citizenService->get($id);
 
@@ -44,24 +44,19 @@ class CitizenController extends BaseController
     }
 
     /**
-     * @param string $name
-     * @return object|\Symfony\Component\HttpFoundation\JsonResponse
-     * @Route("/citizen/{name}", methods={"GET"})
-     */
-    public function getByFullName($name)
-    {
-        $response = $this->citizenService->getByFullName($name);
-
-        return $this->createResponse($response);
-    }
-
-    /**
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      * @Route("/citizen", methods={"GET"})
      */
-    public function getAll()
+    public function getCitizen(Request $request)
     {
-        $response = $this->citizenService->getAll();
+        $name = $request->query->get('name');
+        $birthday = $request->query->get('birthday');
+
+        if ($name && $birthday)
+            $response = $this->citizenService->getByFullNameAndBirthday($name, $birthday);
+        else
+            $response = $this->citizenService->getAll();
 
         return $this->createResponse($response);
     }

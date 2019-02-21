@@ -34,15 +34,19 @@ class CitizenService
         }
     }
 
-    public function getByFullName(string $fullName): ServiceResponse
+    public function getByFullNameAndBirthday(string $fullName, string $birthday): ServiceResponse
     {
         try {
             $name = explode(' ', $fullName);
+            $birthday = self::getDateTimeOrNull($birthday);
 
             if (count($name) != 2)
                 return new ServiceResponse(400, 'Invalid full name');
 
-            $citizen = $this->citizenRepository->findByFullName($name[0], $name[1]);
+            if (!$birthday)
+                return new ServiceResponse(400, 'Invalid birthdate');
+
+            $citizen = $this->citizenRepository->findByFullNameAndBirthday($name[0], $name[1], $birthday);
             if ($citizen) {
                 $model = CitizenModel::fromEntity($citizen);
 
@@ -133,6 +137,19 @@ class CitizenService
             return new ServiceResponse(404, "Citizen $id not found");
         } catch (\Exception $exception) {
             return new ServiceResponse(500, $exception->getMessage());
+        }
+    }
+
+    /**
+     * @param string $dateTime
+     * @return \DateTime|null
+     */
+    private static function getDateTimeOrNull(string $dateTime): ?\DateTime
+    {
+        try {
+            return new \DateTime($dateTime);
+        } catch (\Exception $exception) {
+            return null;
         }
     }
 }

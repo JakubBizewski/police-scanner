@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ErrorMessageService } from './error-message.service';
+import { BottomPanelService } from './bottom-panel.service';
 
-describe('ErrorMessageService', () => {
+describe('BottomPanelService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ErrorMessageService = TestBed.get(ErrorMessageService);
+    const service: BottomPanelService = TestBed.get(BottomPanelService);
     expect(service).toBeTruthy();
   });
 });
