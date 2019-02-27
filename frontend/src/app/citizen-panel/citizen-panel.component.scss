@@ -1,0 +1,39 @@
+.content {
+  display: flex;
+}
+
+.information-panel {
+  flex: auto;
+
+  padding: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+}
+
+.information {
+  width: 50%;
+}
+
+.information h4 {
+  text-transform: uppercase;
+
+  font-weight: normal;
+  font-size: 1.1em;
+  letter-spacing: 0.1em;
+
+  padding: 0 0 0 5%;
+  margin: 0;
+
+  border-bottom: 1px solid #AA3333;
+}
+
+.information:nth-child(odd) h4, .information:nth-child(odd) p {
+  margin: 0 10% 0 0;
+}
+
+.information p {
+  padding: 0 0 0 5%;
+  margin: 0;
+}

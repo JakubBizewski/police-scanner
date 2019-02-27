@@ -1,0 +1,48 @@
+<div *ngIf="citizen">
+  <h2 class="box-header">Citizen information</h2>
+
+  <div class="content">
+    <img src="/assets/aremke.jpg">
+    <div class="information-panel">
+      <div class="information">
+        <h4>First name</h4>
+        <p>{{ citizen.firstName }}</p>
+      </div>
+
+      <div class="information">
+        <h4>Last name</h4>
+        <p>{{ citizen.lastName }}</p>
+      </div>
+
+      <div class="information">
+        <h4>Date of birth</h4>
+        <p>{{ citizen.dateOfBirth|date:'d MMMM y' }}</p>
+      </div>
+
+      <div class="information">
+        <h4>Place of birth</h4>
+        <p>Puck</p>
+      </div>
+
+      <div class="information">
+        <h4>Nationality</h4>
+        <p>Polish</p>
+      </div>
+
+      <div class="information">
+        <h4>VISA status</h4>
+        <p>Non existent</p>
+      </div>
+
+      <div class="information">
+        <h4>Address</h4>
+        <p>ul. Jana Dzbana 15</p>
+      </div>
+
+      <div class="information">
+        <h4>Address city</h4>
+        <p>Puck</p>
+      </div>
+    </div>
+  </div>
+</div>
