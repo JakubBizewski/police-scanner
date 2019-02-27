@@ -24,6 +24,22 @@ mat-card {
     }
 }
 
+h2.box-header {
+    background-color: #AA3333;
+    color: #FBFFFE;
+
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+
+    text-align: center;
+    text-transform: uppercase;
+
+    letter-spacing: 0.1em;
+    font-size: 1.3em;
+    line-height: 1.8em;
+
+    margin: 0;
+}
+
 .full-width {
     width: 100%;
 }

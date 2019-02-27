@@ -15,4 +15,8 @@ export class CitizenService {
 
     return this.http.get<Citizen>(`http://localhost:8080/citizen?name=${fullName}&birthday=${date}`);
   }
+
+  public getCitizenById(id): Observable<Citizen> {
+    return this.http.get<Citizen>(`http://localhost:8080/citizen/${id}`);
+  }
 }

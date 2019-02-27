@@ -23,6 +23,7 @@ import {
 } from '@angular/material';
 import { BottomPanelComponent } from './bottom-panel/bottom-panel.component';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { CitizenPanelComponent } from './citizen-panel/citizen-panel.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     LandingComponent,
     SearchComponent,
     BottomPanelComponent,
+    CitizenPanelComponent,
   ],
   imports: [
     ReactiveFormsModule,

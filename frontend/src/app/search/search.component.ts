@@ -4,6 +4,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BottomPanelService } from '../bottom-panel/bottom-panel.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CitizenService } from '../citizen.service';
+import { SearchCacheService } from '../search-cache.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -14,7 +16,9 @@ export class SearchComponent implements OnInit {
   constructor(
     private vehicleService: VehicleService,
     private citizenService: CitizenService,
-    private bottomPanelService: BottomPanelService) { }
+    private bottomPanelService: BottomPanelService,
+    private searchCache: SearchCacheService,
+    private router: Router) { }
 
   vehicleForm = new FormGroup({
     number: new FormControl('', Validators.required),
@@ -37,7 +41,10 @@ export class SearchComponent implements OnInit {
       this.vehicleService.getVehicleByVin(number)
         .subscribe(
           vehicle => {
+            this.searchCache.cachedVehicle = vehicle;
             this.bottomPanelService.clear();
+
+            this.router.navigate(['/vehicle', vehicle.id]);
           },
           (error: HttpErrorResponse) => {
             if (error.status === 404) {
@@ -50,7 +57,10 @@ export class SearchComponent implements OnInit {
       this.vehicleService.getRegistrationByNumber(number)
         .subscribe(
           registration => {
+            this.searchCache.cachedVehicle = registration.vehicle;
             this.bottomPanelService.clear();
+
+            this.router.navigate(['/vehicle', registration.vehicle.id]);
           },
         (error: HttpErrorResponse) => {
             if (error.status === 404) {
@@ -72,7 +82,10 @@ export class SearchComponent implements OnInit {
     this.citizenService.getCitizenByFullNameAndBirthDate(`${firstName} ${lastName}`, birthDate)
       .subscribe(
         citizen => {
+          this.searchCache.cachedCitizen = citizen;
           this.bottomPanelService.clear();
+
+          this.router.navigate(['/citizen', citizen.id]);
         },
         (error: HttpErrorResponse) => {
           if (error.status === 404) {
