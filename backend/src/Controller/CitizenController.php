@@ -5,6 +5,7 @@ namespace PoliceScanner\Controller;
 use PoliceScanner\Model\CitizenModel;
 use PoliceScanner\Service\CitationService;
 use PoliceScanner\Service\CitizenService;
+use PoliceScanner\Service\VisaService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,11 +13,16 @@ class CitizenController extends BaseController
 {
     private $citizenService;
     private $citationService;
+    private $visaService;
 
-    public function __construct(CitizenService $citizenService, CitationService $citationService)
+    public function __construct(
+        CitizenService $citizenService,
+        CitationService $citationService,
+        VisaService $visaService)
     {
         $this->citizenService = $citizenService;
         $this->citationService = $citationService;
+        $this->visaService = $visaService;
     }
 
     /**
@@ -39,6 +45,18 @@ class CitizenController extends BaseController
     public function getCitations($id)
     {
         $response = $this->citationService->getForCitizenId($id);
+
+        return $this->createResponse($response);
+    }
+
+    /**
+     * @param int $id
+     * @return object|\Symfony\Component\HttpFoundation\JsonResponse
+     * @Route("/citizen/{id}/visa", methods={"GET"}, requirements={"id"="\d+"})
+     */
+    public function getVisa($id)
+    {
+        $response = $this->visaService->getByOwnerId($id);
 
         return $this->createResponse($response);
     }

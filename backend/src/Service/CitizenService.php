@@ -87,6 +87,12 @@ class CitizenService
             $citizen->setFirstName($model->firstName);
             $citizen->setLastName($model->lastName);
             $citizen->setDateOfBirth(new \DateTime($model->dateOfBirth));
+            $citizen->setPlaceOfBirth($model->placeOfBirth);
+            $citizen->setNationality($model->nationality);
+            $citizen->setHeight($model->height);
+            $citizen->setWeight($model->weight);
+            $citizen->setAddressStreet($model->addressStreet);
+            $citizen->setAddressCity($model->addressCity);
 
             $this->citizenRepository->save($citizen);
 
@@ -112,6 +118,12 @@ class CitizenService
                 $citizen->setFirstName($model->firstName);
                 $citizen->setLastName($model->lastName);
                 $citizen->setDateOfBirth(new \DateTime($model->dateOfBirth));
+                $citizen->setPlaceOfBirth($model->placeOfBirth);
+                $citizen->setNationality($model->nationality);
+                $citizen->setHeight($model->height);
+                $citizen->setWeight($model->weight);
+                $citizen->setAddressStreet($model->addressStreet);
+                $citizen->setAddressCity($model->addressCity);
 
                 $this->citizenRepository->save($citizen);
 
