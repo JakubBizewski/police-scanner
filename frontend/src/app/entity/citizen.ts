@@ -3,4 +3,10 @@ export class Citizen {
   firstName: string;
   lastName: string;
   dateOfBirth: Date;
+  placeOfBirth: string;
+  nationality: string;
+  height: string;
+  weight: string;
+  addressStreet;
+  addressCity;
 }
