@@ -1,39 +1,41 @@
-<h2 class="box-header">Search the police database</h2>
-<div class="content">
-    <div class="panel">
-        <h3>Vehicle</h3>
-        <form [formGroup]="vehicleForm">
-            <mat-form-field class="full-width">
-                <input matInput placeholder="vin / registration number" [formControlName]="'number'">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <mat-select placeholder="search type" [formControlName]="'searchType'">
-                    <mat-option [value]="'vin'">VIN</mat-option>
-                    <mat-option [value]="'registration'">Registration number</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </form>
-    </div>
-    <div class="panel">
-        <h3>Citizen</h3>
-        <form [formGroup]="citizenForm">
-            <mat-form-field class="full-width">
-                <input matInput placeholder="first name" [formControlName]="'firstName'">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput placeholder="last name" [formControlName]="'lastName'">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input matInput placeholder="date of birth" [matDatepicker]="dateOfBirth" [formControlName]="'birthDate'">
-                <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
-                <mat-datepicker #dateOfBirth></mat-datepicker>
-            </mat-form-field>
-        </form>
-    </div>
-    <div class="search-button">
-        <button mat-raised-button [disabled]="vehicleForm.invalid" (click)="searchVehicle()">Search</button>
-    </div>
-    <div class="search-button">
-        <button mat-raised-button [disabled]="citizenForm.invalid" (click)="searchCitizen()">Search</button>
+<div class="container">
+    <h2 class="box-header">Search the police database</h2>
+    <div class="content">
+        <div class="panel">
+            <h3>Vehicle</h3>
+            <form [formGroup]="vehicleForm">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="vin / registration number" [formControlName]="'number'">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-select placeholder="search type" [formControlName]="'searchType'">
+                        <mat-option [value]="'vin'">VIN</mat-option>
+                        <mat-option [value]="'registration'">Registration number</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="panel">
+            <h3>Citizen</h3>
+            <form [formGroup]="citizenForm">
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="first name" [formControlName]="'firstName'">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="last name" [formControlName]="'lastName'">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput placeholder="date of birth" [matDatepicker]="dateOfBirth" [formControlName]="'birthDate'">
+                    <mat-datepicker-toggle matSuffix [for]="dateOfBirth"></mat-datepicker-toggle>
+                    <mat-datepicker #dateOfBirth></mat-datepicker>
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="search-button">
+            <button mat-raised-button [disabled]="vehicleForm.invalid" (click)="searchVehicle()">Search</button>
+        </div>
+        <div class="search-button">
+            <button mat-raised-button [disabled]="citizenForm.invalid" (click)="searchCitizen()">Search</button>
+        </div>
     </div>
 </div>

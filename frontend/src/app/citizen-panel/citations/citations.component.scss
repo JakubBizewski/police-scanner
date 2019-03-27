@@ -1,0 +1,27 @@
+.citations {
+  width: 95%;
+  margin: 20px auto 10px auto;
+
+  max-height: 22px * 2 + 28px * 4;
+  overflow-y: auto;
+}
+
+.citation:not(:first-child) {
+  margin-top: 5px;
+}
+
+.add-button {
+  padding: 0 20px 20px 20px;
+  text-align: right;
+}
+
+button {
+  display: inline-block;
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 2.2em;
+
+  background-color: #FAA916;
+  color: #FBFFFE;
+}

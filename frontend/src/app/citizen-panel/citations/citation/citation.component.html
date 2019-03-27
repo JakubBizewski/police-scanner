@@ -1,0 +1,13 @@
+<div class="citation-header" (click)="expanded = !expanded">
+  <div class="col-5">{{ citation.offense.name }}</div>
+  <div class="col-2 center-align">{{ citation.status }}</div>
+  <div class="col-5 right-align">{{ citation.issueTime|date:"d MMM y" }}</div>
+</div>
+<div class="citation-body" [class.hidden]="!expanded">
+  <div class="col-5">Issuer: Filip Aremke</div>
+  <div class="col-2 center-align">Description:</div>
+  <div class="col-5 right-align">Fine: ${{ citation.offense.fine }}</div>
+  <div class="citation-description center-align">
+    {{ citation.description }}
+  </div>
+</div>

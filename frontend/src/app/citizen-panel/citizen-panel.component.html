@@ -1,4 +1,4 @@
-<div *ngIf="citizen">
+<div class="container" *ngIf="citizen">
   <h2 class="box-header">Citizen information</h2>
 
   <div class="content">
@@ -59,3 +59,5 @@
     </div>
   </div>
 </div>
+
+<app-citations *ngIf="citizen" [citizen]="citizen"></app-citations>

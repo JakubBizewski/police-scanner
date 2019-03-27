@@ -12,4 +12,6 @@ export class Citation {
   citizen: Citizen;
   offense: Offense;
   issueTime: Date;
+  description: string;
+  status: string;
 }

@@ -20,10 +20,14 @@ import {
   MatFormFieldModule,
   MatDatepickerModule,
   MatSelectModule,
+  MatDialogModule,
 } from '@angular/material';
 import { BottomPanelComponent } from './bottom-panel/bottom-panel.component';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { CitizenPanelComponent } from './citizen-panel/citizen-panel.component';
+import { CitationsComponent } from './citizen-panel/citations/citations.component';
+import { CitationComponent } from './citizen-panel/citations/citation/citation.component';
+import { CitationAddDialogComponent } from './citizen-panel/citations/citation-add-dialog/citation-add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,9 @@ import { CitizenPanelComponent } from './citizen-panel/citizen-panel.component';
     SearchComponent,
     BottomPanelComponent,
     CitizenPanelComponent,
+    CitationsComponent,
+    CitationComponent,
+    CitationAddDialogComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -50,9 +57,13 @@ import { CitizenPanelComponent } from './citizen-panel/citizen-panel.component';
     MatCardModule,
     MatSnackBarModule,
     MatIconModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CitationAddDialogComponent
+  ]
 })
 export class AppModule { }

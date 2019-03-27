@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Add a new citation</h2>
+<div mat-dialog-content>
+    <form [formGroup]="createForm">
+        <mat-form-field class="full-width">
+            <mat-label>Citation offense</mat-label>
+            <mat-select [formControlName]="'offense'">
+                <mat-option *ngFor="let offence of offenses" [value]="offence.id">
+                    {{ offence.name }} - ${{ offence.fine }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Status" [formControlName]="'status'">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <textarea matInput placeholder="Description" [formControlName]="'description'" cdkTextareaAutosize></textarea>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+    <button mat-button [disabled]="!createForm.valid" (click)="createCitation()">Create</button>
+</div>

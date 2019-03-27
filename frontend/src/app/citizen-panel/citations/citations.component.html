@@ -1,0 +1,13 @@
+<div class="container">
+  <h2 class="box-header">Citations</h2>
+
+  <div class="citations">
+    <div class="citation" *ngFor="let citation of citations">
+      <app-citation [citation]="citation"></app-citation>
+    </div>
+  </div>
+
+  <div class="add-button">
+    <button mat-raised-button (click)="showAddDialog()">Add new</button>
+  </div>
+</div>

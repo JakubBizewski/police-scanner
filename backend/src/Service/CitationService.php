@@ -98,6 +98,8 @@ class CitationService
             $citation->setCitizen($citizen);
             $citation->setOffense($offense);
             $citation->setIssueTime(new \DateTime($model->issueTime));
+            $citation->setDescription($model->description);
+            $citation->setStatus($model->status);
 
             $this->citationRepository->save($citation);
 
@@ -130,13 +132,15 @@ class CitationService
                 $citation->setCitizen($citizen);
                 $citation->setOffense($offense);
                 $citation->setIssueTime(new \DateTime($model->issueTime));
+                $citation->setDescription($model->description);
+                $citation->setStatus($model->status);
 
                 $this->citationRepository->save($citation);
 
                 return new ServiceResponse(204);
             }
 
-            return new ServiceResponse(404, "Vehicle $model->id not found");
+            return new ServiceResponse(404, "Citation $model->id not found");
         } catch (\Exception $exception) {
             return new ServiceResponse(500, $exception->getMessage());
         }

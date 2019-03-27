@@ -1,0 +1,65 @@
+.citation-header {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  background-color: #AA3333;
+
+  text-transform: uppercase;
+
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  line-height: 1.4em;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.citation-header:hover {
+  background-color: #bc3737;
+}
+
+.citation-body {
+  background-color: #1b1b1e;
+
+  max-height: 110px;
+  overflow: hidden;
+
+  padding: 5px 10px;
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  text-transform: uppercase;
+
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  line-height: 1.4em;
+
+  color: white;
+
+  transition: all 0.4s ease-out;
+}
+
+.citation-body .citation-description {
+  margin-top: 10px;
+
+  text-transform: none;
+
+  font-weight: normal;
+  font-size: 0.95em;
+  letter-spacing: 0.1em;
+  line-height: 1.4em;
+
+  width: 100%;
+}
+
+.hidden {
+  max-height: 0;
+  padding: 0 10px;
+}

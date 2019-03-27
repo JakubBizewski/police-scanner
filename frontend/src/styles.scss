@@ -11,7 +11,7 @@ body, html {
     padding: 0;
     margin: 0;
 
-    background-image: linear-gradient(to right bottom, #faa916, #e4684e, #a14662, #513550, #1b1b1e);
+    background: linear-gradient(to right bottom, #faa916, #e4684e, #a14662, #513550, #1b1b1e) fixed;
 }
 
 mat-card {
@@ -40,6 +40,15 @@ h2.box-header {
     margin: 0;
 }
 
+.container {
+    max-width: 920px;
+
+    margin: 40px auto 40px auto;
+
+    background-color: #fbfffe;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
 .full-width {
     width: 100%;
 }
@@ -50,30 +59,32 @@ h2.box-header {
 
 .col-1 {
     width: 8.33%;
-    padding: 0 5px;
 }
 
 .col-2 {
     width: 16.66%;
-    padding: 0 5px;
 }
 
 .col-3 {
     width: 25%;
-    padding: 0 5px;
 }
 
 .col-4 {
     width: 33.33%;
-    padding: 0 5px;
 }
 
 .col-5 {
     width: 41.66%;
-    padding: 0 5px;
 }
 
 .col-6 {
     width: 50%;
-    padding: 0 5px;
+}
+
+.right-align {
+    text-align: right;
+}
+
+.center-align {
+    text-align: center;
 }
